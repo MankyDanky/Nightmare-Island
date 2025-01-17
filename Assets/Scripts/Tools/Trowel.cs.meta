@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 50bbba8e29fb04df480ad0bc7d6a9db8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - inventoryManager: {instanceID: 0}
+  - dirtGroundItem: {fileID: 5091717385712900938, guid: b560d9464c5384511bb23b25c4725df3, type: 3}
+  - sandGroundItem: {fileID: 7644669916170602309, guid: 9cd8432f8af29471cb77cc67d7939d18, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

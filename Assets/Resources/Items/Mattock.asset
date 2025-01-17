@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523ae2ae723894ad4bb92854bfe8dcc4, type: 3}
+  m_Name: Mattock
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1481998900, guid: b5db3d04038d64f3ab71ec5015e54d81, type: 3}
+  itemTag: 5
+  itemName: Mattock
+  itemDescription: Bet you haven't heard of that one
+  itemObject: {fileID: 6013399422391221384, guid: 34acee2c71c454d7eb40c97c9c2493bf, type: 3}
