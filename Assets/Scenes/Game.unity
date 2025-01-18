@@ -2004,6 +2004,7 @@ MonoBehaviour:
   itemDrops:
   - chance: 1
     item: {fileID: 4822175179966085144, guid: 2596b0565de0047e1a73c2ebf1ab8a3e, type: 3}
+  enemyBehaviour: {fileID: 560367685}
 --- !u!114 &560367685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5495,6 +5496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawned: 0
   spawning: 0
+  dying: 0
   menu: {fileID: 1428121492}
   crosshair: {fileID: 1158304452}
   spawnTimer: 0
@@ -6433,7 +6435,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
-  health: 100
+  health: 5
   maxHealth: 100
   hitEffect: {fileID: 1828522234}
 --- !u!54 &1606584612
@@ -8895,6 +8897,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082067540}
   m_Mesh: {fileID: -2432090755550338912, guid: fcc99458bb94d47a6becb1c37b5ac3a0, type: 3}
+--- !u!114 &2124057827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6053367031925692503, guid: ba86ffd9fd0a74320baaafd67abf959b, type: 3}
+  m_PrefabInstance: {fileID: 2371437209873104661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4607d532d14436a8dea717b56d8fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2146131455
 GameObject:
   m_ObjectHideFlags: 0
@@ -9247,12 +9260,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1435975945856822331, guid: ba86ffd9fd0a74320baaafd67abf959b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2269327551012328232, guid: ba86ffd9fd0a74320baaafd67abf959b, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 287763002}
+    - target: {fileID: 2269327551012328232, guid: ba86ffd9fd0a74320baaafd67abf959b, type: 3}
+      propertyPath: enemyBehaviour
+      value: 
+      objectReference: {fileID: 2124057827}
     - target: {fileID: 2269327551012328232, guid: ba86ffd9fd0a74320baaafd67abf959b, type: 3}
       propertyPath: itemDrops.Array.size
       value: 1

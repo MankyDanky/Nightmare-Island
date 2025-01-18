@@ -25,13 +25,15 @@ public class MoveCamera : MonoBehaviour
                 Quaternion newRotation = Quaternion.identity;
                 newRotation.eulerAngles = Vector3.Lerp(Vector3.zero, startingRotation, gameManager.spawnTimer);
                 transform.rotation = newRotation;
+            } else if (gameManager.dying) {
+                transform.position = Vector3.Lerp(new Vector3(0, 50, 0), cameraPostion.position, gameManager.spawnTimer);
+                transform.rotation = Quaternion.identity;
             } else {
                 transform.position = new Vector3(0, 50, 0);
                 transform.Rotate(new Vector3(0, 25*Time.deltaTime, 0));
                 startingPosition = transform.position;
                 startingRotation = transform.rotation.eulerAngles;
             }
-            
         }
        
     }

@@ -130,5 +130,8 @@ public class Player : MonoBehaviour
         Color color = hitEffect.color;
         color.a = 0.8f;
         hitEffect.color = color;
+        if (health <= 0) {
+            gameManager.Die();
+        }
     }
 }

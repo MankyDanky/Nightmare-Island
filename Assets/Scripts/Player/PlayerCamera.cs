@@ -42,6 +42,13 @@ public class PlayerCamera : MonoBehaviour
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
             depthOfField.active = false;
             transform.localPosition = new Vector3(0f, 0.5f, -0.057f);
+            startPosition = transform.localPosition;
+            startRotation = transform.rotation;
+        } else if (gameManager.dying) {
+            depthOfField.focalLength = new ClampedFloatParameter(200, 1, 300, true);
+            depthOfField.active = true;
+            transform.localPosition = Vector3.Lerp(new Vector3(0, 0, 75), startPosition, gameManager.spawnTimer);
+            transform.rotation = Quaternion.Lerp(Quaternion.Euler(40.9f, 180f, 0), startRotation, gameManager.spawnTimer);
         } else if(!gameManager.spawned) {
             if (gameManager.spawning) {
                 transform.localPosition = Vector3.Lerp(new Vector3(0f, 0.5f, -0.057f), startPosition, gameManager.spawnTimer);

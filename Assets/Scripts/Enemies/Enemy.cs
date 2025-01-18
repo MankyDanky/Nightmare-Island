@@ -11,19 +11,27 @@ public class Enemy : MonoBehaviour
     Rigidbody rb;
     public RectTransform healthbar;
     float maxHealthbarSize;
+    GameManager gameManager;
     [Serializable] public class ItemDrop { public float chance; public GameObject item; }
     public ItemDrop[] itemDrops;
+    public MonoBehaviour enemyBehaviour;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         maxHealthbarSize = healthbar.sizeDelta.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.dying) {
+            enemyBehaviour.enabled = false;
+            GetComponentInChildren<Animator>().enabled = false;
+        } else if (!gameManager.spawned) {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Damage(float damage, Vector3 position, Vector3 direction) {

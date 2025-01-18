@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     public bool spawned;
     public bool spawning;
+    public bool dying;
     public GameObject menu;
     public GameObject crosshair;
     public float spawnTimer;
@@ -27,7 +28,25 @@ public class GameManager : MonoBehaviour
                 spawned = true;
                 spawning = false;
             }
-        } 
+        }
+        if (dying) {
+            if (spawnTimer > 0) {
+                spawnTimer -= Time.deltaTime;
+                Debug.Log("TEST");
+            } else {
+                dying = false;
+                menu.SetActive(true);
+            }
+        }
+    }
+
+    public void Die() {
+        spawned = false;
+        dying = true;
+        spawnTimer = 1;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crosshair.SetActive(false);
     }
 
     public void QuitGame() {
