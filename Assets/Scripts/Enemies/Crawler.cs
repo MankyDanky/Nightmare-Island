@@ -62,7 +62,4 @@ public class Crawler : MonoBehaviour
             
         }
     }
-    public void Attack() {
-        Debug.Log("DAMAGE");
-    }
 }
