@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
         if (dying) {
             if (spawnTimer > 0) {
                 spawnTimer -= Time.deltaTime;
-                Debug.Log("TEST");
             } else {
                 dying = false;
                 menu.SetActive(true);
