@@ -10,17 +10,21 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
     Rigidbody rb;
     public RectTransform healthbar;
+    TimeManager timeManager;
     float maxHealthbarSize;
     GameManager gameManager;
     [Serializable] public class ItemDrop { public float chance; public GameObject item; }
     public ItemDrop[] itemDrops;
     public MonoBehaviour enemyBehaviour;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         maxHealthbarSize = healthbar.sizeDelta.x;
+        timeManager = GameObject.FindWithTag("TimeManager").GetComponent<TimeManager>();
+        timeManager.dawn.AddListener(Die);
     }
 
     // Update is called once per frame

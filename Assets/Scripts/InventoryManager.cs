@@ -156,6 +156,13 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void CloseInventory() {
+        inventoryAnimator.SetBool("InventoryDisplayed", false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crosshair.SetActive(true);
+    }
+
     void Update()
     {
         // Hide/display inventory
@@ -168,10 +175,7 @@ public class InventoryManager : MonoBehaviour
                 crosshair.SetActive(false);
                 player.StopMoving();
             } else {
-                inventoryAnimator.SetBool("InventoryDisplayed", false);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                crosshair.SetActive(true);
+                CloseInventory();
             }
         }
         

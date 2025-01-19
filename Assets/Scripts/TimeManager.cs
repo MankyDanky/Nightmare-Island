@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class TimeManager : MonoBehaviour
     public float dayTime = 0f;
     public Transform orbit;
     public Gradient transitionGradient;
+    public UnityEvent nightfall;
+    public UnityEvent dawn;
     GameManager gameManager;
+    bool nightfallInvoked = false;
+    bool dawnInvoked = false;
 
     Light mainLight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +30,16 @@ public class TimeManager : MonoBehaviour
     {
         if (gameManager.spawned) {
             dayTime = (dayTime + 0.01f*Time.deltaTime) % (MathF.PI * 2f);
+            if (dayTime > Mathf.PI && !nightfallInvoked) {
+                dawnInvoked = false;
+                nightfallInvoked = true;
+                nightfall.Invoke();
+            } else if (dayTime < Math.PI && !dawnInvoked) {
+                dawnInvoked = true;
+                nightfallInvoked = false;
+                dawn.Invoke();
+            }
+            
             float lightAngle = dayTime/MathF.PI/2*360;
             if (Mathf.Sin(dayTime) < 0) {
                 lightAngle *= -1;

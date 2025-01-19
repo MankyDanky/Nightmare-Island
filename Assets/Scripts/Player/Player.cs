@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public float health;
     public float maxHealth;
     public Image hitEffect;
+    public RectTransform healthBar;
 
     Vector3 moveDirection;
 
@@ -133,5 +134,6 @@ public class Player : MonoBehaviour
         if (health <= 0) {
             gameManager.Die();
         }
+        healthBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 200*health/maxHealth);
     }
 }

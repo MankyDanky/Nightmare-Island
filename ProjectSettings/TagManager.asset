@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Healthbar
   - Rock
+  - TimeManager
   layers:
   - Default
   - TransparentFX

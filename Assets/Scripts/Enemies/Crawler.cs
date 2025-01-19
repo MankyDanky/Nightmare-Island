@@ -31,6 +31,7 @@ public class Crawler : MonoBehaviour
         transform.LookAt(targetPostition);
         float distance = (player.position - transform.position).magnitude;
         if (distance < attackRange) {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             animator.SetBool("IsWalking", false);
             walkDelayStarted = false;
             if (attackDelayStarted) {
