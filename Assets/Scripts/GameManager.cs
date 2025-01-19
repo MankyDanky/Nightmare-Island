@@ -22,10 +22,14 @@ public class GameManager : MonoBehaviour
     public GameObject playerHealthBar;
     public TMP_Text highscoreText;
     public TMP_Text highscoreTextOutline;
+    public Transform playerSpawn;
+    Player player;
+    float startTime;
    
     void Start() {
         highscoreText.text = "Highscore: " + PlayerPrefs.GetInt("Highscore", 0).ToString() + " Waves";
         highscoreTextOutline.text = highscoreText.text;
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     public void StartGame() {
@@ -39,10 +43,10 @@ public class GameManager : MonoBehaviour
         timeManager.nightfall.AddListener(SpawnMonster);
         inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryManager>();
         timeManager.dawn.AddListener(UpdateWave);
-        
     }
 
     void UpdateWave() {
+        Debug.Log(wave);
         wave += 1;
         if (PlayerPrefs.GetInt("Highscore", 0) < wave) {
             PlayerPrefs.SetInt("Highscore", wave);
@@ -62,10 +66,20 @@ public class GameManager : MonoBehaviour
         if (dying) {
             if (spawnTimer > 0) {
                 spawnTimer -= Time.deltaTime;
+                timeManager.dayTime = Mathf.Lerp(2*Mathf.PI, startTime, spawnTimer);
             } else {
+                timeManager.dayTime = 0;
                 dying = false;
                 menu.SetActive(true);
                 playerHealthBar.SetActive(false);
+
+                // Refresh resource gameobjects
+                foreach (GameObject tree in GameObject.FindGameObjectsWithTag("Tree")) {
+                    tree.GetComponent<Tree>().Refresh();
+                }
+                foreach (GameObject rock in GameObject.FindGameObjectsWithTag("Rock")) {
+                    rock.GetComponent<Rock>().Refresh();
+                }
             }
         }
     }
@@ -99,6 +113,14 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         crosshair.SetActive(false);
+        startTime = timeManager.dayTime;
+        wave = 0;
+        highscoreText.text = "Highscore: " + PlayerPrefs.GetInt("Highscore", 0).ToString() + " Waves";
+        highscoreTextOutline.text = highscoreText.text;
+        player.maxHealth = 100;
+        player.health = 100;
+        inventoryManager.ClearInventory();
+        player.transform.SetPositionAndRotation(playerSpawn.position, playerSpawn.rotation);
     }
 
     public void QuitGame() {

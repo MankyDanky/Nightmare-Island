@@ -84,6 +84,19 @@ public class InventoryManager : MonoBehaviour
 
     }
     
+    public void ClearInventory() {
+        if (selectedItem != null) {
+            DeselectItem();
+        }
+        toolEquipped = null;
+        Destroy(toolObject);
+        toolObject = null;
+        for (int i = 0; i < 12; i++) {
+            inventoryTiles[i].RemoveItem();
+            items[i] = null;
+        }
+    }
+
     public void DeselectItem() {
         if (selectedTile != null) {
             selectedTile.backgroundImage.sprite = unselectedTileSprite;

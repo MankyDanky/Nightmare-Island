@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.spawned) {
+        if (gameManager.spawned && !gameManager.dying) {
             dayTime = (dayTime + 0.01f*Time.deltaTime) % (MathF.PI * 2f);
             if (dayTime > Mathf.PI && !nightfallInvoked) {
                 dawnInvoked = false;
@@ -39,7 +39,25 @@ public class TimeManager : MonoBehaviour
                 nightfallInvoked = false;
                 dawn.Invoke();
             }
-            
+
+            float lightAngle = dayTime/MathF.PI/2*360;
+            if (Mathf.Sin(dayTime) < 0) {
+                lightAngle *= -1;
+            }
+            lightTransform.eulerAngles = new Vector3(
+                    lightAngle,
+                    0,
+                    0
+                );
+            orbit.eulerAngles = new Vector3(
+                0,
+                -90,
+                -dayTime/MathF.PI/2*360
+            );
+            skyboxMaterial.SetFloat("_DayTime", dayTime);
+            float t = Mathf.Clamp(MathF.Sin(dayTime) * 10 + 0.5f, 0, 1);
+            mainLight.color = transitionGradient.Evaluate(t);
+        } else if (gameManager.dying) {
             float lightAngle = dayTime/MathF.PI/2*360;
             if (Mathf.Sin(dayTime) < 0) {
                 lightAngle *= -1;

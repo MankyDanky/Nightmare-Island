@@ -39,6 +39,7 @@ public class Flier : MonoBehaviour
             delay -= Time.deltaTime;
             if (delay <= 0) {
                 chargeDelayStarted = false;
+                attackDelayStarted = false;
             }
         } else if (distance < attackRange) {
             walkDelayStarted = false;

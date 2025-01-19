@@ -16,12 +16,15 @@ public class Tree : MonoBehaviour
     Rigidbody rb;
     public float refreshTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         health = maxHealth;
         hittable = true;
         logPosition = log.transform.position;
         logRotation = log.transform.rotation;
+    }
+
+    void Start() {
         rb = log.GetComponent<Rigidbody>();
     }
 
