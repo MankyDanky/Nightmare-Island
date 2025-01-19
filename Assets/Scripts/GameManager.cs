@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System;
 using TMPro;
 
@@ -46,7 +45,6 @@ public class GameManager : MonoBehaviour
     }
 
     void UpdateWave() {
-        Debug.Log(wave);
         wave += 1;
         if (PlayerPrefs.GetInt("Highscore", 0) < wave) {
             PlayerPrefs.SetInt("Highscore", wave);
@@ -90,7 +88,6 @@ public class GameManager : MonoBehaviour
         }
         Transform spawnPosition = monsterSpawnPositions[UnityEngine.Random.Range(0, monsterSpawnPositions.Length)];
         int index = UnityEngine.Random.Range(1, 4);
-        Debug.Log(index);
         switch (index) {
             case 1:
                 Instantiate(spider, spawnPosition.position, Quaternion.identity);
