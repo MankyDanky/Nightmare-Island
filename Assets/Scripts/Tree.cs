@@ -1,19 +1,28 @@
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Tree : MonoBehaviour
 {
     float health;
+    public float maxHealth;
     public GameObject hitEffect;
     public GameObject log;
     public GameObject plankGroundItem;
     public GameObject appearEffect;
     bool hittable;
+    Vector3 logPosition;
+    Quaternion logRotation;
+    Rigidbody rb;
+    public float refreshTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        health = maxHealth;
         hittable = true;
-        health = 100;
+        logPosition = log.transform.position;
+        logRotation = log.transform.rotation;
+        rb = log.GetComponent<Rigidbody>();
     }
 
     public void Hit(int damage, Vector3 position) {
@@ -21,17 +30,27 @@ public class Tree : MonoBehaviour
             health -= damage;
             Instantiate(hitEffect, position, Quaternion.Euler(new Vector3(-90, 0, 0)));
             if (health <= 0) {
-                Rigidbody rb = log.AddComponent<Rigidbody>();
+                rb.constraints = RigidbodyConstraints.None;
                 rb.AddForce(-Camera.main.transform.right * 4, ForceMode.Impulse);
                 hittable = false;
                 Invoke("SpawnPlank", 4f);
+                Invoke("Refresh", refreshTime);
             }
         }
+    }
+
+    public void Refresh() {
+        hittable = true;
+        rb.constraints = RigidbodyConstraints.FreezeAll; 
+        log.SetActive(true);
+        log.transform.SetPositionAndRotation(logPosition, logRotation);
+        Instantiate(appearEffect, log.transform.Find("Center").position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+        health = maxHealth;
     }
 
     void SpawnPlank() {
         Instantiate(plankGroundItem, log.transform.Find("Center").position, Quaternion.Euler(new Vector3(-90, 0, 0)));
         Instantiate(appearEffect, log.transform.Find("Center").position, Quaternion.Euler(new Vector3(-90, 0, 0)));
-        Destroy(log);
+        log.SetActive(false);
     }   
 }

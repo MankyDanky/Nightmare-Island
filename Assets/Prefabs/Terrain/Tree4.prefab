@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8236699734144259132}
   - component: {fileID: 2979466484746821807}
   - component: {fileID: 7231644765872490202}
+  - component: {fileID: 8586693128138726126}
   m_Layer: 0
   m_Name: tree4
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3013573310248852019}
-  m_Material: {fileID: 13400000, guid: 08627b46b41f7469e8fc7667debfd9cb, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -114,6 +115,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8247335449976585770, guid: 1f052bdd79a084adba700648583b762b, type: 3}
+--- !u!54 &8586693128138726126
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3013573310248852019}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &3313479317265721581
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +386,7 @@ MonoBehaviour:
   log: {fileID: 3013573310248852019}
   plankGroundItem: {fileID: 1704607483529043868, guid: 39737bcb1f57648088e0b3ce1112637b, type: 3}
   appearEffect: {fileID: 4045050118900420286, guid: 51c28e11bc3ba475393ec5c71857fb88, type: 3}
+  refreshTime: 5
 --- !u!1 &7177225690337080633
 GameObject:
   m_ObjectHideFlags: 0
